@@ -1,0 +1,14 @@
+#!/bin/sh
+
+uni="$HOME/uni"
+dir="$(ls "$uni" | fzf)"
+
+if [ ! -d "$HOME/uni/$dir" ]; then
+    echo "$dir is not a directiory"
+fi
+
+if [ -z $TMUX ]; then
+    tmux new-session -s "$dir" -c "$uni/$dir"
+else
+    tmux new-session -s "$dir" -c "$uni/$dir" -d
+fi

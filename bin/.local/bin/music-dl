@@ -1,0 +1,4 @@
+#!/bin/sh
+
+yt-dlp -x --audio-quality 0 --audio-format best --embed-thumbnail \
+    --embed-metadata --embed-chapters --embed-info-json --xattrs "$@"

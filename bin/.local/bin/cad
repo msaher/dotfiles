@@ -1,0 +1,3 @@
+#!/bin/sh
+
+calcurse -d ${1:-30} --output-datefmt "%a %b %d"
