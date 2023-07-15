@@ -5,10 +5,6 @@ local plugins = {
 
     {
         "rebelot/kanagawa.nvim",
-        lazy = false,
-        config = function()
-            vim.cmd.colorscheme('kanagawa')
-        end,
     },
 
     {
@@ -33,6 +29,10 @@ local plugins = {
 
     {
     'RRethy/nvim-base16',
+    lazy = false,
+    config = function()
+        vim.cmd.colorscheme('base16-tomorrow-night')
+    end,
     },
 
     'tanvirtin/monokai.nvim',

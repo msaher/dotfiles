@@ -15,6 +15,7 @@ setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
+bindkey \^U backward-kill-line # ctrl+u delete backward line. Not whole line.
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
@@ -129,4 +130,3 @@ function _comp_kdesrc_run
 # complete -o nospace -F _comp_kdesrc_run kdesrc-run
 
 ################################################################################
-

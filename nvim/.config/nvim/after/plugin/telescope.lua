@@ -12,11 +12,12 @@ require('telescope').setup {
 local builtin = require("telescope.builtin")
 
 
-vim.keymap.set('n', "<leader>ie", builtin.find_files)
-vim.keymap.set('n', "<leader>ig", builtin.git_files)
-vim.keymap.set('n', "<leader>ir", builtin.oldfiles) -- recent files
-vim.keymap.set('n', "<leader>il", builtin.live_grep)
+vim.keymap.set('n', "<leader>e", builtin.find_files)
+vim.keymap.set('n', "<leader><leader>e", builtin.git_files)
+vim.keymap.set('n', "<leadfer>r", builtin.oldfiles) -- recent files
+vim.keymap.set('n', "<leader>g", builtin.live_grep)
 vim.keymap.set('n', "<leader>f", builtin.buffers)
+vim.keymap.set('n', "<leader><leader>f", builtin.buffers)
 
 vim.keymap.set('n', "<leader>ifd", builtin.diagnostics)
 vim.keymap.set('n', "<leader>ifm", builtin.man_pages)
@@ -43,6 +44,10 @@ vim.keymap.set('n', "<leader>ifH", builtin.highlights)
 vim.keymap.set('n', "<leader>ifm", builtin.marks)
 vim.keymap.set('n', "<leader>ifp", builtin.pickers)
 
+-- lsp
+vim.keymap.set('n', "<leader>s", builtin.lsp_workspace_symbols)
+vim.keymap.set('n', "<leader><leader>s", builtin.lsp_document_symbols)
+
 local function find_config()
     local opts = {
         cwd = "$HOME/.config/nvim/",
@@ -55,7 +60,6 @@ end
 vim.keymap.set('n', "<leader>if<leader>", find_config)
 
 -- custom stuff
-
 -- local pickers = require "telescope.pickers"
 -- local finders = require "telescope.finders"
 -- local conf = require("telescope.config").values
