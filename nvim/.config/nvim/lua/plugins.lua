@@ -77,7 +77,7 @@ local plugins = {
     {
         'msaher/bufls.nvim',
         config = function()
-            vim.keymap.set('n', '<leader>id', require('bufls').ls)
+            vim.keymap.set('n', '<leader>b', require('bufls').ls)
         end
     },
 

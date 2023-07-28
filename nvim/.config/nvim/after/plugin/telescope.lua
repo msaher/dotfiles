@@ -45,8 +45,8 @@ vim.keymap.set('n', "<leader>ifm", builtin.marks)
 vim.keymap.set('n', "<leader>ifp", builtin.pickers)
 
 -- lsp
-vim.keymap.set('n', "<leader>s", builtin.lsp_workspace_symbols)
-vim.keymap.set('n', "<leader><leader>s", builtin.lsp_document_symbols)
+vim.keymap.set('n', "<leader>s", builtin.lsp_document_symbols)
+vim.keymap.set('n', "<leader><leader>s", builtin.lsp_workspace_symbols)
 
 local function find_config()
     local opts = {
