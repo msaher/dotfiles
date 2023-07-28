@@ -17,6 +17,10 @@ local plugins = {
 
     {
         'navarasu/onedark.nvim',
+        lazy = false,
+        config = function()
+            vim.cmd.colorscheme('onedark')
+        end,
     },
 
     'phha/zenburn.nvim',
@@ -29,10 +33,6 @@ local plugins = {
 
     {
     'RRethy/nvim-base16',
-    lazy = false,
-    config = function()
-        vim.cmd.colorscheme('base16-tomorrow-night')
-    end,
     },
 
     'tanvirtin/monokai.nvim',
@@ -86,7 +86,7 @@ local plugins = {
     'vim-pandoc/vim-pandoc',
     'brennier/quicktex',
 
-    {dir = '~/.config/nvim/local-plugins/terman.nvim'},
+    -- {dir = '~/.config/nvim/local-plugins/terman.nvim'},
 
     "linty-org/readline.nvim",
 
@@ -97,6 +97,8 @@ local plugins = {
     },
 
     'nvim-lualine/lualine.nvim',
+
+    'nvim-lua/plenary.nvim',
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
