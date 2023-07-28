@@ -71,6 +71,7 @@ local plugins = {
         'tpope/vim-fugitive',
         config = function()
             vim.keymap.set('n', "<leader>kg", "<cmd>Git<CR>")
+            vim.keymap.set('n', "<leader>ig", "<cmd>Git<CR>")
         end
     },
 
