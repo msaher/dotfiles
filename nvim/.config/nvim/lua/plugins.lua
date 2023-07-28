@@ -99,7 +99,9 @@ local plugins = {
 
     'nvim-lualine/lualine.nvim',
 
-    'nvim-lua/plenary.nvim',
+    {dir = '~/.config/nvim/compile.nvim', config = function()
+        require('compile').setup()
+    end},
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
