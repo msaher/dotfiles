@@ -2,7 +2,7 @@ local A = vim.api
 local fn = vim.fn
 local M = {}
 
--- TODO: clean this up. Its not as clean as it could be
+-- TODO: clean this up, and turn it into a plugin
 local function append_line(compile)
     return function(error, data, job)
         A.nvim_buf_set_lines(compile.buf, -1, -1, false, data)
@@ -58,7 +58,7 @@ end
 function Compile:_execute()
     if not self:_has_buf() then
         self.buf = A.nvim_create_buf(true, true)
-        A.nvim_buf_set_name(self.buf, 'meow')
+        -- A.nvim_buf_set_name(self.buf, 'meow')
     end
 
     -- TODO: make the window opening function dynamic
@@ -106,10 +106,12 @@ function M.setup()
     A.nvim_create_user_command('Compile', function(data)
         if #data.fargs ~= 0 then
             last_cmd = data.fargs
+        elseif data.bang then
+            last_cmd = {string.match(vim.opt_local.makeprg:get(), "([^%s]+)%s*")}
         end
         c.cmd = last_cmd
         c:start()
-    end, {nargs = '*', complete = 'file'})
+    end, {nargs = '*', complete = 'file', bang = true})
 
     vim.keymap.set('n', '<leader>c', "<cmd>:Compile<CR>", {})
 end
