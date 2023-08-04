@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("TermClose", {
         vim.cmd.stopinsert() -- exit terminal mode
         local buf = tonumber(vim.fn.expand('<abuf>'))
         local opts = { buffer = buf }
-        disable_insert(opts)
+        -- disable_insert(opts)
 
         vim.keymap.set('n', "q", function()
             api.nvim_buf_delete(buf, {})

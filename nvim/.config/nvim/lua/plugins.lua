@@ -99,9 +99,22 @@ local plugins = {
 
     'nvim-lualine/lualine.nvim',
 
-    {dir = '~/.config/nvim/compile.nvim', config = function()
-        require('compile').setup()
-    end},
+    {
+        'msaher/compile.nvim',
+        config = function()
+            local Compile = require('compile.compile')
+            local c = Compile:new({cmd = {'ls', '-l'}})
+            vim.api.nvim_create_user_command('Compile', function(data)
+                if #data.fargs ~= 0 then
+                    c.cmd = data.fargs
+                end
+                c:start()
+            end, {nargs = '*', complete = 'file'})
+
+            vim.keymap.set('n', '<leader>c', "<cmd>:Compile<CR>", {})
+        end
+    },
+
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
