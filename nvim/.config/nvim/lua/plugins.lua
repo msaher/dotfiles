@@ -9,6 +9,10 @@ local plugins = {
 
     {
         'ellisonleao/gruvbox.nvim',
+        lazy = false,
+        config = function()
+            vim.cmd.colorscheme('gruvbox')
+        end
     },
 
     {
@@ -17,10 +21,6 @@ local plugins = {
 
     {
         'navarasu/onedark.nvim',
-        lazy = false,
-        config = function()
-            vim.cmd.colorscheme('onedark')
-        end,
     },
 
     'phha/zenburn.nvim',
@@ -35,10 +35,35 @@ local plugins = {
     'RRethy/nvim-base16',
     },
 
-    'tanvirtin/monokai.nvim',
+    'loctvl842/monokai-pro.nvim',
+
+
     'ofirgall/ofirkai.nvim',
-    'shaunsingh/solarized.nvim',
-    'sainnhe/everforest',
+
+    {
+        'sainnhe/everforest',
+    },
+    --
+
+    {
+        'projekt0n/github-nvim-theme',
+        -- lazy = false,
+        -- config = function()
+        --     vim.cmd('colorscheme github_dark')
+        -- end,
+    },
+
+    {
+        "EdenEast/nightfox.nvim",
+    },
+
+
+    {
+        "fabius/molokai.nvim",
+        dependencies = "rktjmp/lush.nvim",
+        lazy = false,
+        priority = 1000,
+    },
 
     {
         'nvim-telescope/telescope.nvim',
@@ -55,7 +80,11 @@ local plugins = {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/nvim-cmp',
 
-    'ThePrimeagen/harpoon',
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate',
+    },
+
 
     'tpope/vim-commentary',
     'tpope/vim-surround',
@@ -83,8 +112,18 @@ local plugins = {
     },
 
     'axvr/org.vim',
-    'vim-pandoc/vim-pandoc-syntax',
-    'vim-pandoc/vim-pandoc',
+
+    {
+        'vim-pandoc/vim-pandoc-syntax',
+        lazy = false,
+    },
+
+    {
+        'vim-pandoc/vim-pandoc',
+        lazy = false,
+    },
+
+
     'brennier/quicktex',
 
     -- {dir = '~/.config/nvim/local-plugins/terman.nvim'},
@@ -100,20 +139,46 @@ local plugins = {
     'nvim-lualine/lualine.nvim',
 
     {
-        'msaher/compile.nvim',
-        config = function()
-            local Compile = require('compile.compile')
-            local c = Compile:new({cmd = {'ls', '-l'}})
-            vim.api.nvim_create_user_command('Compile', function(data)
-                if #data.fargs ~= 0 then
-                    c.cmd = data.fargs
-                end
-                c:start()
-            end, {nargs = '*', complete = 'file'})
+        -- 'msaher/compile.nvim',
+        dir = '~/.config/nvim/local-plugins/compile.nvim/'
+    },
 
-            vim.keymap.set('n', '<leader>c', "<cmd>:Compile<CR>", {})
+    {
+        'stevearc/dressing.nvim',
+    },
+
+    {
+        'msaher/makegrep-job.nvim',
+        config = function()
+            local mg = require('makegrep-job')
+            local opts = {nargs = '*', complete = 'file'}
+
+            vim.api.nvim_create_user_command('Grep', function(data)
+                mg.grep(data.args, {})
+            end, opts)
+
+            vim.api.nvim_create_user_command('Lgrep', function(data)
+                mg.grep(data.args, {loclist = true})
+            end, opts)
+
+            vim.api.nvim_create_user_command('Make', function(data)
+                mg.make(data.args, {})
+            end, opts)
+
+            vim.api.nvim_create_user_command('Lmake', function(data)
+                mg.make(data.args, {loclist = true})
+            end, opts)
+
         end
     },
+
+    {
+        'stevearc/oil.nvim',
+        config = function()
+            require("oil").setup()
+            vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+        end
+    }
 
 }
 

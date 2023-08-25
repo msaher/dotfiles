@@ -35,11 +35,17 @@ opt.smartcase = true
 opt.number = true
 -- opt.relativenumber = true
 
+opt.cursorline = true
+
 -- TODO: if running wsl windows, use s else use xdg-open
 vim.g.netrw_browsex_viewer = "s"
 
 -- opt.guicursor = ''
 opt.guicursor:append("a:blinkon100")
+
+if vim.fn.executable('rg') == 1 then
+    vim.o.grepprg="rg --vimgrep"
+end
 
 -- set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[5 q'
 vim.cmd [[
