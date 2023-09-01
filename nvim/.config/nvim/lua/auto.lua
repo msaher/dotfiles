@@ -1,12 +1,6 @@
 local api = vim.api
 local basic = api.nvim_create_augroup("basic", { clear = true })
 
--- get rid of trailing white space before writing
-api.nvim_create_autocmd("BufWritePre", {
-    group = basic,
-    command = [[%s/\s\+$//e]],
-})
-
 api.nvim_create_autocmd("TextYankPost", {
     group = basic,
     callback = function () vim.highlight.on_yank({}) end
@@ -49,4 +43,17 @@ vim.api.nvim_create_autocmd("TermClose", {
         opts)
 
     end
+})
+
+-- formatting
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = basic,
+    callback = function(_)
+        if vim.bo.formatprg ~= "" then
+            vim.cmd("%!" .. vim.bo.formatprg)
+        else
+            -- get rid of trailing white space as fallback
+            vim.cmd[[%s/\s\+$//e]]
+        end
+    end,
 })
