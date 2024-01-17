@@ -4,8 +4,8 @@ vim.keymap.set(nv, "<leader>y", [["+y]])
 vim.keymap.set(nv, "<leader>Y", [["+y$]])
 vim.keymap.set(nv, "<leader>p", [["+p]])
 vim.keymap.set(nv, "<leader>P", [["+P]])
-vim.keymap.set(nv, "<leader>o", [["0p]])
-vim.keymap.set(nv, "<leader>O", [["0P]])
+vim.keymap.set(nv, "<leader>0", [["0p]])
+vim.keymap.set(nv, "<leader>)", [["0P]])
 
 -- aliases
 vim.keymap.set('n', "<leader>a", "A")
@@ -62,6 +62,9 @@ vim.keymap.set('n', '<leader>k3', '<cmd>b#<cr>')
 vim.keymap.set('n', '4', '<C-w>s')
 vim.keymap.set('n', '<leader>4', '<C-w>v')
 vim.keymap.set('n', '5', '<C-w>=')
+
+-- fix spelling mistakes quickly
+vim.cmd[[imap <c-s> <c-g>u<Esc>[s1z=`]a<c-g>u]]
 
 -- restore digits
 for d=1,9 do

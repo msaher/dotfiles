@@ -1,3 +1,4 @@
-if vim.fn.executable('black') == 1 then
-    vim.opt_local.formatprg = "black -q -"
-end
+-- vim.opt_local.textwidth = 250
+-- if vim.fn.executable('black') == 1 then
+--     vim.opt_local.formatprg = "black --line-length " ..  vim.opt_local.textwidth:get() .. " -q -"
+-- end

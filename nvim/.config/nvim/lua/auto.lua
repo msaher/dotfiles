@@ -50,7 +50,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     group = basic,
     callback = function(_)
         if vim.bo.formatprg ~= "" then
+            vim.cmd.norm('mt')
             vim.cmd("%!" .. vim.bo.formatprg)
+            vim.cmd.norm("`tzz")
         else
             -- get rid of trailing white space as fallback
             vim.cmd[[%s/\s\+$//e]]

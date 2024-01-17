@@ -1,6 +1,8 @@
 local opt = vim.opt
 
 vim.g.mapleader = " " -- space as leader
+vim.g.maplocalleader = [[\]]
+
 vim.g.netrw_banner = 0 -- netrw
 
 -- opt.clipboard:append("unnamedplus") -- default register is +
@@ -35,7 +37,7 @@ opt.smartcase = true
 opt.number = true
 -- opt.relativenumber = true
 
-opt.cursorline = true
+opt.cursorline = false
 
 -- TODO: if running wsl windows, use s else use xdg-open
 vim.g.netrw_browsex_viewer = "s"

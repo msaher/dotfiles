@@ -8,8 +8,8 @@ promptinit
 
 source /etc/bash_completion.d/git-prompt # its not actually bash exclusive
 setopt prompt_subst # for runnig scripts
-PROMPT='%F{magenta}%1~%f %F{yellow}$(__git_ps1 "(%s) ")%f%F{red}$%f '
-# PROMPT='%F{cyan}%n%f%F{red}@%f%F{blue}%m%f %F{magenta}%1~%f %F{yellow}$(__git_ps1 "(%s) ")%f%F{red}$%f '
+# PROMPT='%F{magenta}%1~%f %F{yellow}$(__git_ps1 "(%s) ")%f%F{red}$%f '
+PROMPT='%F{cyan}%n%f%F{red}@%f%F{blue}%m%f %F{magenta}%1~%f %F{yellow}$(__git_ps1 "(%s) ")%f%F{red}$%f '
 
 setopt histignorealldups sharehistory
 
@@ -81,8 +81,6 @@ alias egrep='egrep --color=auto'
 # alias fd=fdfind
 alias vim=nvim
 alias ..='cd ..'
-alias t=task
-alias tu="task +uni"
 alias e='explorer.exe .'
 alias nvid='neovide.exe --wsl'
 alias cls="clear" # cursed
@@ -91,42 +89,39 @@ alias mountd='sudo mount -t drvfs D: /mnt/d'
 alias em='setsid emacs'
 alias ca="calcurse"
 
+alias todo='vim ~/desk/notes/home/inbox.todo.md'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# kdesrc-build #################################################################
-
-## Add kdesrc-build to PATH
-export PATH="$HOME/kde/src/kdesrc-build:$PATH"
-
-
-## Autocomplete for kdesrc-run
-function _comp_kdesrc_run
+n ()
 {
-  local cur
-  COMPREPLY=()
-  cur="${COMP_WORDS[COMP_CWORD]}"
+    # Block nesting of nnn in subshells
+    [ "${NNNLVL:-0}" -eq 0 ] || {
+        echo "nnn is already running"
+        return
+    }
 
-  # Complete only the first argument
-  if [[ $COMP_CWORD != 1 ]]; then
-    return 0
-  fi
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #      NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
-  # Retrieve build modules through kdesrc-run
-  # If the exit status indicates failure, set the wordlist empty to avoid
-  # unrelated messages.
-  local modules
-  if ! modules=$(kdesrc-run --list-installed);
-  then
-      modules=""
-  fi
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
 
-  # Return completions that match the current word
-  COMPREPLY=( $(compgen -W "${modules}" -- "$cur") )
+    # The command builtin allows one to alias nnn to n, if desired, without
+    # making an infinitely recursive alias
+    command nnn "$@"
 
-  return 0
+    [ ! -f "$NNN_TMPFILE" ] || {
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" > /dev/null
+    }
 }
 
-## Register autocomplete function
-# complete -o nospace -F _comp_kdesrc_run kdesrc-run
-
-################################################################################
+alias n=n
