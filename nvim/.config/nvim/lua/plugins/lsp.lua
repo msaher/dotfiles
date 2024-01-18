@@ -87,4 +87,10 @@ return {
 			require("mason").setup()
 		end,
 	},
+
+    { 'j-hui/fidget.nvim', opts = {} },
+
+
+    { "folke/neodev.nvim", opts = {} }
+
 }

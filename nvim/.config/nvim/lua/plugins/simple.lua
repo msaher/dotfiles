@@ -52,14 +52,6 @@ return {
 	"norcalli/nvim-colorizer.lua",
 
 	{
-		"tpope/vim-fugitive",
-		config = function()
-			vim.keymap.set("n", "<leader>kg", "<cmd>Git<CR>")
-			vim.keymap.set("n", "<leader>ig", "<cmd>Git<CR>")
-		end,
-	},
-
-	{
 		"msaher/bufls.nvim",
 		config = function()
 			vim.keymap.set("n", "<leader>b", require("bufls").ls)
@@ -86,7 +78,7 @@ return {
         cond = true,
 		config = function()
             require("compile")
-            vim.keymap.set('n', "<leader>t", "<cmd>:Task<cr>")
+            vim.keymap.set('n', "<leader>t", ":Task<up>")
         end,
 	},
 
@@ -140,5 +132,14 @@ return {
         end
     },
 
-    {'kevinhwang91/nvim-bqf'}
+    {'kevinhwang91/nvim-bqf'},
+
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
+        opts = {},
+    },
+
+
+
 }
