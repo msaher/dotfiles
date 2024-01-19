@@ -22,13 +22,13 @@ opt.undofile = true -- save undo history
 opt.backup = true
 opt.textwidth = 80
 -- don't litter directories with backups
-opt.backupdir:remove('.')
+opt.backupdir:remove(".")
 
 -- splits where I expect them
 opt.splitright = true
 opt.splitbelow = true
 
-opt.mouse = 'a'
+opt.mouse = "a"
 
 -- ignore case unless a there's a captical letter
 opt.ignorecase = true
@@ -45,12 +45,12 @@ vim.g.netrw_browsex_viewer = "s"
 -- opt.guicursor = ''
 opt.guicursor:append("a:blinkon100")
 
-if vim.fn.executable('rg') == 1 then
-    vim.o.grepprg="rg --vimgrep"
+if vim.fn.executable("rg") == 1 then
+	vim.o.grepprg = "rg --vimgrep"
 end
 
 -- set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[5 q'
-vim.cmd [[
+vim.cmd([[
 let g:clipboard = {
                         \   'name': 'win32yank-wsl',
                         \   'copy': {
@@ -64,4 +64,4 @@ let g:clipboard = {
                         \   'cache_enabled': 0,
                         \ }
                         " }}}
-    ]]
+    ]])

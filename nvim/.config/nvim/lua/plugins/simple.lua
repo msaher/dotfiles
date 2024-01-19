@@ -75,30 +75,29 @@ return {
 	{
 		-- 'msaher/compile.nvim',
 		dir = "~/.config/nvim/local-plugins/compile.nvim/",
-        cond = true,
+		cond = true,
 		config = function()
-            require("compile")
-            vim.keymap.set('n', "<leader>t", ":Task<up>")
-        end,
+			require("compile")
+			vim.keymap.set("n", "<leader>t", ":Task ")
+		end,
 	},
 
-    {
-        'stevearc/oil.nvim',
-        config = function()
-            require("oil").setup()
-            vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-        end
-    },
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		end,
+	},
 
-    {
-        'ThePrimeagen/harpoon'
-    },
+	{
+		"ThePrimeagen/harpoon",
+	},
 
-
-    {
-        'dkarter/bullets.vim',
-        config = function()
-            vim.cmd[[
+	{
+		"dkarter/bullets.vim",
+		config = function()
+			vim.cmd([[
             let g:bullets_enabled_file_types = [
             \ 'markdown',
             \ 'text',
@@ -106,40 +105,33 @@ return {
             \ 'pandoc',
             \ 'scratch'
             \]
-            ]]
-        end
-    },
+            ]])
+		end,
+	},
 
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        }
-    },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {},
+	},
 
-    {
-        'stevearc/overseer.nvim',
-        opts = {},
-        config = function()
-            require('overseer').setup()
-        end
-    },
+	{
+		"stevearc/overseer.nvim",
+		opts = {},
+		config = function()
+			require("overseer").setup()
+		end,
+	},
 
-    {'kevinhwang91/nvim-bqf'},
+	{ "kevinhwang91/nvim-bqf" },
 
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        main = 'ibl',
-        opts = {},
-    },
-
-
-
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+	},
 }

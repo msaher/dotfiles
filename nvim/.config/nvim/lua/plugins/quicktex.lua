@@ -138,5 +138,5 @@ end
 
 return {
 	"brennier/quicktex",
-    config = config
+	config = config,
 }

@@ -88,9 +88,7 @@ return {
 		end,
 	},
 
-    { 'j-hui/fidget.nvim', opts = {} },
+	{ "j-hui/fidget.nvim", opts = {} },
 
-
-    { "folke/neodev.nvim", opts = {} }
-
+	{ "folke/neodev.nvim", opts = {} },
 }

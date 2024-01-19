@@ -1,10 +1,5 @@
 -- local opts = {}
 
-local plugins = {
-
-
-
-
-}
+local plugins = {}
 
 return {}

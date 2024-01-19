@@ -38,6 +38,6 @@ end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-    cond = true,
+	cond = true,
 	build = ":TSUpdate",
 }

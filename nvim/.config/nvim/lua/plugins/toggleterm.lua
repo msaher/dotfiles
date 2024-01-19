@@ -6,10 +6,10 @@ end
 
 return {
 	{
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        config = config
-    },
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = config,
+	},
 }
 
 -- require("toggleterm").setup{
