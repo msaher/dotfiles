@@ -138,6 +138,6 @@ end
 
 return {
 	"brennier/quicktex",
-    filetype = {"pandoc", "markdown", "org"},
+	filetype = { "pandoc", "markdown", "org" },
 	config = config,
 }

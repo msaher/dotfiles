@@ -47,7 +47,13 @@ return {
 	"tpope/vim-vinegar",
 	"tpope/vim-unimpaired",
 
-	"famiu/bufdelete.nvim",
+	{
+		"famiu/bufdelete.nvim",
+		cmd = { "Bdelete", "Bwipeout" },
+		keys = {
+			{ "<leader>d", "<cmd>:Bdelete<cr>" },
+		},
+	},
 
 	"norcalli/nvim-colorizer.lua",
 
@@ -126,8 +132,6 @@ return {
 			require("overseer").setup()
 		end,
 	},
-
-	{ "kevinhwang91/nvim-bqf" },
 
 	{
 		"lukas-reineke/indent-blankline.nvim",

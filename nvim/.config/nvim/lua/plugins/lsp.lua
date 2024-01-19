@@ -1,34 +1,34 @@
 local function map(modes, lhs, rhs, opts, desc)
-    local options = vim.tbl_extend('force', opts, {desc = desc})
-    vim.keymap.set(modes, lhs, rhs, options)
+	local options = vim.tbl_extend("force", opts, { desc = desc })
+	vim.keymap.set(modes, lhs, rhs, options)
 end
 
 local function on_attach(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    map("n", "gD", vim.lsp.buf.declaration, bufopts, "declaration")
-    map("n", "gd", vim.lsp.buf.definition, bufopts, "definition")
-    map("n", "K", vim.lsp.buf.hover, bufopts, "hover")
-    map("n", "gI", vim.lsp.buf.implementation, bufopts, "implementation")
-    map("n", "g<C-k>", vim.lsp.buf.signature_help, bufopts, "signature_help")
-    map("n", "gr", vim.lsp.buf.references, bufopts, "references")
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	map("n", "gD", vim.lsp.buf.declaration, bufopts, "declaration")
+	map("n", "gd", vim.lsp.buf.definition, bufopts, "definition")
+	map("n", "K", vim.lsp.buf.hover, bufopts, "hover")
+	map("n", "gI", vim.lsp.buf.implementation, bufopts, "implementation")
+	map("n", "g<C-k>", vim.lsp.buf.signature_help, bufopts, "signature_help")
+	map("n", "gr", vim.lsp.buf.references, bufopts, "references")
 
-    map("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, bufopts, "workspace add")
-    map("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, bufopts, "remove workspace")
-    map("n", "<leader>lwl", function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts, "list workspaces")
+	map("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, bufopts, "workspace add")
+	map("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, bufopts, "remove workspace")
+	map("n", "<leader>lwl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, bufopts, "list workspaces")
 
-    map("n", "<leader>ld", vim.lsp.buf.type_definition, bufopts, "type_definition")
-    map("n", "<leader>lrn", vim.lsp.buf.rename, bufopts, "rename")
-    map("n", "<leader>la", vim.lsp.buf.code_action, bufopts, "code_action")
-    map("n", "<leader>lf", function()
-        vim.lsp.buf.format({ async = true })
-    end, bufopts, "format")
+	map("n", "<leader>ld", vim.lsp.buf.type_definition, bufopts, "type_definition")
+	map("n", "<leader>lrn", vim.lsp.buf.rename, bufopts, "rename")
+	map("n", "<leader>la", vim.lsp.buf.code_action, bufopts, "code_action")
+	map("n", "<leader>lf", function()
+		vim.lsp.buf.format({ async = true })
+	end, bufopts, "format")
 end
 
 local config = function()
@@ -47,7 +47,7 @@ local config = function()
 	-- cmp
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    local lsp_opts = {on_attach = on_attach, capabilities = capabilities}
+	local lsp_opts = { on_attach = on_attach, capabilities = capabilities }
 	lsp.clangd.setup(lsp_opts)
 	lsp.pyright.setup(lsp_opts)
 	lsp.cssls.setup(lsp_opts)

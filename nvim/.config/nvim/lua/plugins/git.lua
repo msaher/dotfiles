@@ -2,17 +2,15 @@ return {
 
 	{
 		"tpope/vim-fugitive",
-        keys = {
-            {"<leader>gg", "<cmd>:Git<cr>"},
-            {"<leader>g<leader>", "<cmd>:Git<cr>"},
-            {"q", "<cmd>:bd<cr>", ft = 'fugitive'}
-        },
-        cmd = "G",
+		keys = {
+			{ "<leader>gg", "<cmd>:Git<cr>" },
+			{ "<leader>g<leader>", "<cmd>:Git<cr>" },
+			{ "q", "<cmd>:bd<cr>", ft = "fugitive" },
+		},
+		cmd = "G",
 	},
 
-
-    {'akinsho/git-conflict.nvim', version = "*", config = true},
-
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
 
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -26,7 +24,7 @@ return {
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
-            current_line_blame = true,
+			current_line_blame = true,
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 
