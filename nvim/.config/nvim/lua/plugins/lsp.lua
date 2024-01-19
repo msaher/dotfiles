@@ -39,8 +39,8 @@ local config = function()
 	local map_opts = { noremap = true, silent = true }
 	map("n", "[d", vim.diagnostic.goto_prev, map_opts)
 	map("n", "]d", vim.diagnostic.goto_next, map_opts)
-	map("n", "<leader><leader>df", vim.diagnostic.open_float, map_opts)
-	map("n", "<leader><leader>dq", vim.diagnostic.setloclist, map_opts)
+	map("n", "<leader><leader>df", vim.diagnostic.open_float, map_opts, "diagnostic float")
+	map("n", "<leader><leader>dq", vim.diagnostic.setloclist, map_opts, "diagnostic location list")
 
 	-- Use an on_attach function to only map the following keys
 	-- after the language server attaches to the current buffer
