@@ -7,6 +7,13 @@ vim.keymap.set(nv, "<leader>P", [["+P]])
 vim.keymap.set(nv, "<leader>0", [["0p]])
 vim.keymap.set(nv, "<leader>)", [["0P]])
 
+-- pretending to be normal
+vim.keymap.set('v', "<C-c>", [["+y]], { desc = "copy to +"})
+vim.keymap.set('n', "<C-c>", [["+Y]])
+vim.keymap.set('v', "<C-v>", [["+P]])
+vim.keymap.set('n', "<leader><C-v>", [["+P]])
+
+
 -- aliases
 vim.keymap.set('n', "<leader>a", "A")
 vim.keymap.set('n', "<leader>;", ":")
