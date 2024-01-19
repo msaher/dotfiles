@@ -17,7 +17,7 @@ local config = function()
 			-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 			-- the name of the parser)
 			-- list of language that will be disabled
-			disable = { "markdown" }, -- vim-pandoc is just better
+			disable = {"markdown"}, -- vim-pandoc is just better
 			-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
 			-- disable = function(lang, buf)
 			--     local max_filesize = 100 * 1024 -- 100 KB
@@ -31,13 +31,16 @@ local config = function()
 			-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
 			-- Using this option may slow down your editor, and you may see some duplicate highlights.
 			-- Instead of true it can also be a list of languages
-			additional_vim_regex_highlighting = false,
+
+			-- Required for spellcheck, some LaTex highlights and
+			-- code block highlights that do not have ts grammar
+			additional_vim_regex_highlighting = { "org" },
 		},
 	})
 end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	cond = true,
 	build = ":TSUpdate",
+    cond = true,
 }

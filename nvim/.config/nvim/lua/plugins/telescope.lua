@@ -19,6 +19,11 @@ local config = function()
 	map("<leader>E", "<cmd>Telescope git_files<CR>")
 	map("<leader><leader>e", "<cmd>Telescope git_files<CR>")
 
+	map("<leader>ig", "<cmd>Telescope live_grep<CR>")
+	map("<leader>ifg", "<cmd>Telescope live_grep<CR>")
+
+	map("<leader>gb", "<cmd>Telescope git_branches<CR>")
+
 	map("<leadfer>r", "<cmd>Telescope oldfiles<CR>") -- recent files
 	map("<leader>f", "<cmd>Telescope buffers<CR>")
 	map("<leader><leader>f", "<cmd>Telescope buffers<CR>")
