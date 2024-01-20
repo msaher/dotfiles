@@ -4,19 +4,17 @@ vim.keymap.set(nv, "<leader>y", [["+y]])
 vim.keymap.set(nv, "<leader>Y", [["+y$]])
 vim.keymap.set(nv, "<leader>p", [["+p]])
 vim.keymap.set(nv, "<leader>P", [["+P]])
-vim.keymap.set(nv, "<leader>0", [["0p]])
-vim.keymap.set(nv, "<leader>)", [["0P]])
 
 -- pretending to be normal
 vim.keymap.set("v", "<C-c>", [["+y]])
 vim.keymap.set("n", "<C-c>", [["+Y]])
 vim.keymap.set("v", "<C-v>", [["+P]])
+vim.keymap.set("i", "<C-v>", [[<c-r>+]])
 vim.keymap.set("n", "<leader><C-v>", [["+P]])
 
 -- aliases
 vim.keymap.set("n", "<leader>a", "A")
 vim.keymap.set("n", "<leader>;", ":")
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>d", "<cmd>bd<CR>")
 
 vim.keymap.set("i", "<C-h>", "<C-w>") -- C-h == C-BS
@@ -76,3 +74,20 @@ vim.cmd([[imap <c-s> <c-g>u<Esc>[s1z=`]a<c-g>u]])
 for d = 1, 9 do
 	vim.keymap.set("n", "<leader>i" .. d, "" .. d)
 end
+
+-- make q quit if there's only nameless listed buffer
+vim.keymap.set("n", "q", function()
+	local bufs = vim.tbl_filter(function(b)
+		return vim.api.nvim_buf_is_loaded(b) and vim.fn.buflisted(b) == 1
+	end, vim.api.nvim_list_bufs())
+
+    local wins = vim.api.nvim_list_wins()
+
+	if #wins == 1
+        and #bufs == 1
+        and vim.api.nvim_buf_get_name(bufs[1]) == "" then
+		vim.cmd.execute("'q'")
+	else
+		vim.api.nvim_feedkeys("q", "n", false)
+	end
+end)

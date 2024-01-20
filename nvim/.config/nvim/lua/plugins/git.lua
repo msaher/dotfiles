@@ -5,7 +5,6 @@ return {
 		keys = {
 			{ "<leader>gg", "<cmd>:Git<cr>" },
 			{ "<leader>g<leader>", "<cmd>:Git<cr>" },
-			{ "q", "<cmd>:bd<cr>", ft = "fugitive" },
 		},
 		cmd = "G",
 	},

@@ -22,8 +22,6 @@ local config = function()
 	map("<leader>ig", "<cmd>Telescope live_grep<CR>")
 	map("<leader>ifg", "<cmd>Telescope live_grep<CR>")
 
-	map("<leader>gb", "<cmd>Telescope git_branches<CR>")
-
 	map("<leadfer>r", "<cmd>Telescope oldfiles<CR>") -- recent files
 	map("<leader>f", "<cmd>Telescope buffers<CR>")
 	map("<leader><leader>f", "<cmd>Telescope buffers<CR>")
@@ -60,6 +58,24 @@ local config = function()
 	map("<leader>s", "<cmd>Telescope lsp_document_symbols<cr>")
 	map("<leader><leader>s", "<cmd>Telescope lsp_workspace_symbols<cr>")
 
+    map("<leader>lfr", "<cmd>Telescope lsp_references<cr>")
+    map("<leader>lfc", "<cmd>Telescope lsp_incoming_calls<cr>")
+    map("<leader>lfo", "<cmd>Telescope lsp_outgoing_calls<cr>")
+    map("<leader>lfs", "<cmd>Telescope lsp_document_symbols<cr>")
+    map("<leader>lfws", "<cmd>Telescope lsp_workspace_symbols<cr>")
+    map("<leader>lfwd", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
+    map("<leader>lfd", "<cmd>Telescope diagnostics<cr>")
+    map("<leader>lfi", "<cmd>Telescope lsp_implementations<cr>")
+    map("<leader>lfgd", "<cmd>Telescope lsp_definitions<cr>")
+    map("<leader>lft", "<cmd>Telescope lsp_type_definitions<cr>")
+
+    map("<leader>gc", "<cmd>Telescope git_commits<cr>")
+    map("<leader>gC", "<cmd>Telescope git_bcommits<cr>")
+    map("<leader>grc", "<cmd>Telescope git_bcommits_range<cr>")
+    map("<leader>gb", "<cmd>Telescope git_branches<cr>")
+    map("<leader>gS", "<cmd>Telescope git_status<cr>")
+    map("<leader>gs", "<cmd>Telescope git_stash<cr>")
+
 	local function find_config()
 		local opts = {
 			cwd = "$HOME/.config/nvim/",
@@ -84,7 +100,10 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
 		config = config,
 	},
 }

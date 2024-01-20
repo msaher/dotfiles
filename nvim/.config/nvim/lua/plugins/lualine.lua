@@ -1,14 +1,14 @@
 local config = function()
-	-- vim.opt.cmdheight = 0
 	vim.opt.showmode = false
+    vim.opt.laststatus = 3
 	require("lualine").setup({
 		options = {
 			icons_enabled = false,
 			theme = "auto",
-			component_separators = { left = "", right = "" },
-			section_separators = { left = "", right = "" },
-			-- component_separators = { left = '', right = ''},
-			-- section_separators = { left = '', right = ''},
+			-- component_separators = { left = "", right = "" },
+			-- section_separators = { left = "", right = "" },
+			component_separators = { left = '', right = ''},
+			section_separators = { left = '', right = ''},
 			disabled_filetypes = {
 				statusline = {},
 				winbar = {},
@@ -43,9 +43,20 @@ local config = function()
 		tabline = {},
 		winbar = {},
 		inactive_winbar = {},
-		extensions = {},
+		extensions = {
+            "fugitive",
+            "lazy",
+            "man",
+            "mason",
+            "nvim-dap-ui",
+            "oil",
+            "quickfix",
+        },
+
 	})
+
 end
+
 
 return {
 	{
