@@ -64,15 +64,9 @@ bindkey -s '^o' 'lfcd\n'  # zsh
 
 
 # enable color support of ls and also add handy aliases
-alias ls='ls -A --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# enable color support of ls and also add handy aliases
-# alias ls='exa'
-# alias l='exa -l'
-# alias la='exa -a'
+alias ls='exa'
+alias l='ls -l'
+alias la='ls -a'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -85,11 +79,7 @@ alias e='explorer.exe .'
 alias nvid='neovide.exe --wsl'
 alias cls="clear" # cursed
 alias mountd='sudo mount -t drvfs D: /mnt/d'
-
-alias em='setsid emacs'
 alias ca="calcurse"
-
-alias todo='vim ~/desk/notes/home/inbox.todo.md'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
