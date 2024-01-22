@@ -1,9 +1,6 @@
 local opt = vim.opt
 
-vim.g.mapleader = " " -- space as leader
-vim.g.maplocalleader = [[\]]
-
-vim.g.netrw_banner = 0 -- netrw
+vim.g.netrw_banner = 0 -- disable netrw help
 
 -- opt.clipboard:append("unnamedplus") -- default register is +
 
@@ -44,6 +41,9 @@ vim.g.netrw_browsex_viewer = "s"
 
 -- opt.guicursor = ''
 opt.guicursor:append("a:blinkon100")
+
+-- statusbar
+opt.laststatus = 2
 
 if vim.fn.executable("rg") == 1 then
 	vim.o.grepprg = "rg --vimgrep"

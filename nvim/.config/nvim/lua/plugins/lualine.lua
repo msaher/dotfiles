@@ -1,6 +1,8 @@
 local config = function()
 	vim.opt.showmode = false
-    vim.opt.laststatus = 3
+    -- save pre-load values in case it gets overriden
+    local last_status = vim.o.laststatus
+
 	require("lualine").setup({
 		options = {
 			icons_enabled = false,
@@ -54,7 +56,7 @@ local config = function()
         },
 
 	})
-
+    vim.o.laststatus = last_status
 end
 
 
