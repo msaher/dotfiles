@@ -1,9 +1,14 @@
+vim.g.mapleader = " " -- space as leader
+vim.g.maplocalleader = [[\]]
+
 -- make pasting nicer
 local nv = { "n", "v" }
 vim.keymap.set(nv, "<leader>y", [["+y]])
 vim.keymap.set(nv, "<leader>Y", [["+y$]])
 vim.keymap.set(nv, "<leader>p", [["+p]])
 vim.keymap.set(nv, "<leader>P", [["+P]])
+vim.keymap.set(nv, "<leader>0", [["0p]])
+vim.keymap.set(nv, "<leader>)", [["0P]])
 
 -- pretending to be normal
 vim.keymap.set("v", "<C-c>", [["+y]])
@@ -16,6 +21,7 @@ vim.keymap.set("n", "<leader><C-v>", [["+P]])
 vim.keymap.set("n", "<leader>a", "A")
 vim.keymap.set("n", "<leader>;", ":")
 vim.keymap.set("n", "<leader>d", "<cmd>bd<CR>")
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 
 vim.keymap.set("i", "<C-h>", "<C-w>") -- C-h == C-BS
 vim.keymap.set("i", "jk", "<esc>")
