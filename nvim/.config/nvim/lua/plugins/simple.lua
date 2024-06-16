@@ -42,10 +42,21 @@ local compile_config = function()
 end
 
 return {
-	"tpope/vim-commentary",
+
+	-- "tpope/vim-commentary",
+    {
+        'numToStr/Comment.nvim',
+        config = function()
+            require("Comment").setup()
+        end,
+    },
+
+
+
 	"tpope/vim-surround",
 	"tpope/vim-vinegar",
-	"tpope/vim-unimpaired",
+	"tpope/vim-dispatch",
+	-- "tpope/vim-unimpaired",
 
 	{
 		"famiu/bufdelete.nvim",
@@ -115,15 +126,19 @@ return {
 		end,
 	},
 
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {},
-	},
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            plugins = {
+                registers = false,
+            }
+        },
+    },
 
 	{
 		"stevearc/overseer.nvim",
@@ -138,4 +153,47 @@ return {
 		main = "ibl",
 		opts = {},
 	},
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            local todo = require('todo-comments')
+            todo.setup()
+
+            vim.keymap.set("n", "]t", function()
+                todo.jump_next()
+            end, { desc = "Next todo comment" })
+
+            vim.keymap.set("n", "[t", function()
+                todo.jump_prev()
+            end, { desc = "Previous todo comment" })
+        end,
+    },
+
+    {
+        'kristijanhusak/vim-dadbod-ui',
+        dependencies = {
+            { 'tpope/vim-dadbod', },
+            { 'tpope/vim-dotenv' },
+            { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, },
+        },
+        -- cmd = {
+        --     'DBUI',
+        --     'DBUIToggle',
+        --     'DBUIAddConnection',
+        --     'DBUIFindBuffer',
+        -- },
+        init = function()
+            -- Your DBUI configuration
+            vim.g.db_ui_use_nerd_fonts = 1
+            vim.g.db_ui_env_variable_url = 'DATABASE_URL'
+        end,
+    },
+
+    {
+        "lukas-reineke/headlines.nvim",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+    },
 }
+

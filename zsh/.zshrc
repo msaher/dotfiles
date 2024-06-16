@@ -1,4 +1,4 @@
-source ~/.zshenv
+# source ~/.zshenv
 
 # Set up the prompt
 
@@ -80,6 +80,7 @@ alias nvid='neovide.exe --wsl'
 alias cls="clear" # cursed
 alias mountd='sudo mount -t drvfs D: /mnt/d'
 alias ca="calcurse"
+alias t="task"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -115,3 +116,5 @@ n ()
 }
 
 alias n=n
+
+eval "$(zoxide init --cmd cd zsh)"

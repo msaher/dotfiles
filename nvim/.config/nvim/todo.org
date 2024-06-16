@@ -1,0 +1,6 @@
+* TODO look into changing your keybindings
+
+  Consider having "layers".
+  - lsp =<leader>k=
+  - =<leader>i=
+  - =<leader>j=

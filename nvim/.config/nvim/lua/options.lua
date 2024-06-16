@@ -50,18 +50,45 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[5 q'
-vim.cmd([[
-let g:clipboard = {
-                        \   'name': 'win32yank-wsl',
-                        \   'copy': {
-                        \      '+': 'win32yank.exe -i --crlf',
-                        \      '*': 'win32yank.exe -i --crlf',
-                        \    },
-                        \   'paste': {
-                        \      '+': 'win32yank.exe -o --lf',
-                        \      '*': 'win32yank.exe -o --lf',
-                        \   },
-                        \   'cache_enabled': 0,
-                        \ }
-                        " }}}
-    ]])
+-- vim.cmd([[
+-- let g:clipboard = {
+--                         \   'name': 'win32yank-wsl',
+--                         \   'copy': {
+--                         \      '+': 'win32yank.exe -i --crlf',
+--                         \      '*': 'win32yank.exe -i --crlf',
+--                         \    },
+--                         \   'paste': {
+--                         \      '+': 'win32yank.exe -o --lf',
+--                         \      '*': 'win32yank.exe -o --lf',
+--                         \   },
+--                         \   'cache_enabled': 0,
+--                         \ }
+--                         " }}}
+--     ]])
+
+vim.g.clipboard = {
+    name = "WslClipboard",
+    copy = {
+	['+'] = "clip.exe",
+	['*'] = "clip.exe",
+    },
+    paste = {
+	['+'] = "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
+	['*'] = "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
+    },
+    cache_enabled = 0,
+}
+
+
+-- vim.g.clipboard = {
+--     name = 'myClipboard',
+--     copy = {
+--         ['+'] = 'tmux load-buffer -',
+--         ['*'] = 'tmux load-buffer -',
+--     },
+--     paste = {
+--         ['+'] = 'tmux save-buffer -',
+--         ['*'] = 'tmux save-buffer -',
+--     },
+--     cache_enabled = 1,
+-- }
