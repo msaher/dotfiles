@@ -1,3 +1,33 @@
 {
-    "workspace.checkThirdParty": false
+    "workspace.checkThirdParty": false,
+    "workspace.library": [
+        "/home/saher/.config/nvim",
+        "/home/saher/.local/share/nvim/site",
+        "/home/saher/.local/share/nvim/lazy/lazy.nvim",
+        "/home/saher/.local/share/nvim/lazy/cmp-nvim-lsp",
+        "/home/saher/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/saher/.local/share/nvim/lazy/neodev.nvim",
+        "/home/saher/.local/share/nvim/lazy/cmp-cmdline",
+        "/home/saher/.local/share/nvim/lazy/tailwindcss-colorizer-cmp.nvim",
+        "/home/saher/.local/share/nvim/lazy/nvim-base16",
+        "/home/saher/.local/share/nvim/lazy/monokai-pro.nvim",
+        "/home/saher/.local/share/nvim/lazy/harpoon",
+        "/home/saher/.local/share/nvim/lazy/vim-pandoc-syntax",
+        "/home/saher/.local/share/nvim/lazy/vim-pandoc",
+        "/home/saher/.local/share/nvim/lazy/catppuccin",
+        "/home/saher/.local/share/nvim/lazy/quicktex",
+        "/home/saher/.local/share/nvim/lazy/onedark.nvim",
+        "/home/saher/.local/share/nvim/lazy/rose-pine",
+        "/home/saher/.local/share/nvim/lazy/gruvbox.nvim",
+        "/home/saher/.local/share/nvim/lazy/lush.nvim",
+        "/home/saher/.local/share/nvim/lazy/molokai.nvim",
+        "/usr/local/share/nvim/runtime",
+        "/usr/local/lib/nvim",
+        "/home/saher/.local/share/nvim/lazy/cmp-nvim-lsp/after",
+        "/home/saher/.local/share/nvim/lazy/cmp-cmdline/after",
+        "/home/saher/.local/share/nvim/lazy/catppuccin/after",
+        "/home/saher/.config/nvim/after",
+        "/home/saher/.local/state/nvim/lazy/readme",
+        "${3rd}/luassert/library"
+    ]
 }

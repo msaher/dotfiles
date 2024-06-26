@@ -32,6 +32,11 @@ local config = function()
 		}, {
 			{ name = "buffer" },
 		}),
+
+        formatting = {
+            format = require("tailwindcss-colorizer-cmp").formatter
+        },
+
 	})
 
 	-- Set configuration for specific filetype.
@@ -68,6 +73,16 @@ return {
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-nvim-lua",
+
+    {
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        -- optionally, override the default options:
+        config = function()
+            require("tailwindcss-colorizer-cmp").setup({
+                color_square_width = 2,
+            })
+        end
+    },
 
 	{
 		"hrsh7th/nvim-cmp",

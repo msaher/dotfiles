@@ -66,7 +66,17 @@ return {
 		},
 	},
 
-	"norcalli/nvim-colorizer.lua",
+    {
+        "NvChad/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({
+                user_default_options = {
+                    tailwind = true,
+                }
+            })
+
+        end,
+    },
 
 	{
 		"msaher/bufls.nvim",
@@ -151,7 +161,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {},
+		opts = { enabled = false},
 	},
 
     {

@@ -24,8 +24,9 @@ local function on_attach(client, bufnr)
 	end, bufopts, "list workspaces")
 
 	map("n", "<leader>ld", vim.lsp.buf.type_definition, bufopts, "type_definition")
-	map("n", "<leader>lrn", vim.lsp.buf.rename, bufopts, "rename")
+	map("n", "<leader>lr", vim.lsp.buf.rename, bufopts, "rename")
 	map("n", "<leader>la", vim.lsp.buf.code_action, bufopts, "code_action")
+	map("n", "<leader><leader>a", vim.lsp.buf.code_action, bufopts, "code_action")
 	map("n", "<leader>lf", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts, "format")
@@ -39,8 +40,8 @@ local config = function()
 	local map_opts = { noremap = true, silent = true }
 	map("n", "[d", vim.diagnostic.goto_prev, map_opts)
 	map("n", "]d", vim.diagnostic.goto_next, map_opts)
-	map("n", "<leader><leader>df", vim.diagnostic.open_float, map_opts, "diagnostic float")
-	map("n", "<leader><leader>dq", vim.diagnostic.setloclist, map_opts, "diagnostic location list")
+	map("n", "<leader>ldf", vim.diagnostic.open_float, map_opts, "diagnostic float")
+	map("n", "<leader>ldq", vim.diagnostic.setloclist, map_opts, "diagnostic location list")
 
 	-- Use an on_attach function to only map the following keys
 	-- after the language server attaches to the current buffer
@@ -48,12 +49,15 @@ local config = function()
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	local lsp_opts = { on_attach = on_attach, capabilities = capabilities }
+
 	lsp.clangd.setup(lsp_opts)
 	lsp.pyright.setup(lsp_opts)
 	lsp.cssls.setup(lsp_opts)
 	lsp.texlab.setup(lsp_opts)
 	lsp.tsserver.setup(lsp_opts)
 	lsp.rust_analyzer.setup(lsp_opts)
+	lsp.rust_analyzer.setup(lsp_opts)
+	lsp.tailwindcss.setup(lsp_opts)
 
 	lsp.lua_ls.setup({
 		on_attach = on_attach,
