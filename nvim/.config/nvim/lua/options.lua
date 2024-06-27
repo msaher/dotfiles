@@ -49,6 +49,8 @@ if vim.fn.executable("rg") == 1 then
 	vim.o.grepprg = "rg --vimgrep"
 end
 
+vim.cmd "cabbrev te hor term"
+
 -- set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[5 q'
 -- vim.cmd([[
 -- let g:clipboard = {
