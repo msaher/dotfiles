@@ -1,7 +1,0 @@
-#!/bin/sh
-
-start=$(date -d 2023-01-15 "+%s")
-now=$(date "+%s")
-week=$((now-start))
-
-echo $((week/(60*60*24*7)))
