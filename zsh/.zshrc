@@ -64,7 +64,7 @@ bindkey -s '^o' 'lfcd\n'  # zsh
 
 
 # enable color support of ls and also add handy aliases
-alias ls='exa'
+alias ls='exa -a'
 alias l='ls -l'
 alias la='ls -a'
 

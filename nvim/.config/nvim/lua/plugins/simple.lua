@@ -44,14 +44,12 @@ end
 return {
 
 	-- "tpope/vim-commentary",
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require("Comment").setup()
-        end,
-    },
-
-
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	},
 
 	"tpope/vim-surround",
 	"tpope/vim-vinegar",
@@ -66,17 +64,16 @@ return {
 		},
 	},
 
-    {
-        "NvChad/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup({
-                user_default_options = {
-                    tailwind = true,
-                }
-            })
-
-        end,
-    },
+	{
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({
+				user_default_options = {
+					tailwind = true,
+				},
+			})
+		end,
+	},
 
 	{
 		"msaher/bufls.nvim",
@@ -136,19 +133,19 @@ return {
 		end,
 	},
 
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {
-            plugins = {
-                registers = false,
-            }
-        },
-    },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			plugins = {
+				registers = false,
+			},
+		},
+	},
 
 	{
 		"stevearc/overseer.nvim",
@@ -161,49 +158,96 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = { enabled = false},
+		opts = { enabled = false },
+	},
+
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local todo = require("todo-comments")
+			todo.setup()
+
+			vim.keymap.set("n", "]t", function()
+				todo.jump_next()
+			end, { desc = "Next todo comment" })
+
+			vim.keymap.set("n", "[t", function()
+				todo.jump_prev()
+			end, { desc = "Previous todo comment" })
+		end,
+	},
+
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod" },
+			{ "tpope/vim-dotenv" },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" } },
+		},
+		-- cmd = {
+		--     'DBUI',
+		--     'DBUIToggle',
+		--     'DBUIAddConnection',
+		--     'DBUIFindBuffer',
+		-- },
+		init = function()
+			-- Your DBUI configuration
+			vim.g.db_ui_use_nerd_fonts = 1
+			vim.g.db_ui_env_variable_url = "DATABASE_URL"
+		end,
+	},
+
+	{
+		"lukas-reineke/headlines.nvim",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+	},
+
+	{
+		"mong8se/buffish.nvim",
+	},
+
+	{
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					-- Conform will run multiple formatters sequentially
+					python = { "black" },
+					-- Use a sub-list to run only the first available formatter
+					javascript = { { "prettierd", "prettier" } },
+				},
+			})
+
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+			vim.api.nvim_create_user_command("Format", function()
+				require("conform").format()
+			end, {})
+		end,
 	},
 
     {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        "mfussenegger/nvim-lint",
         config = function()
-            local todo = require('todo-comments')
-            todo.setup()
-
-            vim.keymap.set("n", "]t", function()
-                todo.jump_next()
-            end, { desc = "Next todo comment" })
-
-            vim.keymap.set("n", "[t", function()
-                todo.jump_prev()
-            end, { desc = "Previous todo comment" })
+            require("lint").linters_by_ft = {
+                javascript = { "eslint" },
+                typescript = { "eslint" },
+                javascriptreact = { "eslint" },
+                typescriptreact = { "eslint" },
+            }
         end,
+        vim.api.nvim_create_user_command("Lint", function(data)
+            if data.args ~= nil then
+                require("lint").try_lint(data.args)
+            else
+                require("lint").try_lint()
+            end
+        end, { nargs = "?"})
     },
 
     {
-        'kristijanhusak/vim-dadbod-ui',
-        dependencies = {
-            { 'tpope/vim-dadbod', },
-            { 'tpope/vim-dotenv' },
-            { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, },
-        },
-        -- cmd = {
-        --     'DBUI',
-        --     'DBUIToggle',
-        --     'DBUIAddConnection',
-        --     'DBUIFindBuffer',
-        -- },
-        init = function()
-            -- Your DBUI configuration
-            vim.g.db_ui_use_nerd_fonts = 1
-            vim.g.db_ui_env_variable_url = 'DATABASE_URL'
-        end,
-    },
-
-    {
-        "lukas-reineke/headlines.nvim",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-    },
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+    }
 }
-

@@ -20,15 +20,20 @@ return {
 		-- end
 	},
 
+    {
+        "sainnhe/gruvbox-material",
+		config = function()
+		    vim.cmd.colorscheme("gruvbox-material")
+		end
+
+    },
+
 	{
 		"folke/tokyonight.nvim",
 	},
 
 	{
 		"navarasu/onedark.nvim",
-		config = function()
-		    vim.cmd.colorscheme("onedark")
-		end
 	},
 
 	-- {
@@ -50,9 +55,6 @@ return {
 
 	{
 		"RRethy/nvim-base16",
-		-- config = function()
-		--     vim.cmd.colorscheme("base16-tomorrow-night")
-		-- end
 	},
 
 	"loctvl842/monokai-pro.nvim",
@@ -61,6 +63,9 @@ return {
 
 	{
 		"sainnhe/everforest",
+        config = function()
+            vim.geverforest_background = 'hard'
+        end
 	},
 	--
 
@@ -82,4 +87,13 @@ return {
 		lazy = false,
 		priority = 1000,
 	},
+
+    {
+        "NTBBloodbath/sweetie.nvim",
+    },
+
+    {
+        "sainnhe/edge",
+    }
+
 }
